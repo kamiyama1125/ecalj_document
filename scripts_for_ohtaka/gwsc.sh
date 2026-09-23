@@ -35,6 +35,7 @@ for ((i=1; i<=itenum; i++)); do
     
     python ecalj_band.py
     mv bandfig/ecalj_band.png bandfig/ecalj_band_$((i+last_iter)).png
+    #for magnetide
     #mv bandfig/ecalj_band.spin1.png bandfig/ecalj_band_$((i+last_iter)).spin1.png
     #mv bandfig/ecalj_band.spin2.png bandfig/ecalj_band_$((i+last_iter)).spin2.png
     cp bnd* QSGW.$((i+last_iter))run/
