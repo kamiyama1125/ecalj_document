@@ -145,19 +145,20 @@
   lmf による電子密度計算が終わったらバンド計算を実行します。この後の QSGW を行うのに絶対必要なわけではないですが、DFT の段階でうまく計算ができているか確認するためにもバンドはチェックしておきましょう。
   ##### getsyml の実行
   対称性の判定と k-path の自動生成をしてくれます。
-    ```
-    getsyml GaAs
-    ```
+  ```
+  getsyml GaAs
+  ```
   ##### job_band の実行
   以下のコマンドによってバンド計算を実行できます。
-    ```
-    job_band GaAs -np 4
-    ```
-    これは少し時間かかるので、計算ノードで実行するようにしましょう。[job_band.sh のサンプル](./scripts_for_ohtaka/job_band.sh) を参考にスクリプトファイルを作り、`sbatch job_band.sh` を実行することで計算ノードで実行することができます。
+  ```
+  job_band GaAs -np 4
+  ```
+  これは少し時間かかるので、計算ノードで実行するようにしましょう。[job_band.sh のサンプル](./scripts_for_ohtaka/job_band.sh)を参考にスクリプトファイルを作り、`sbatch job_band.sh` を実行することで計算ノードで実行することができます。
   ##### バンドの描画について
   バンドの描画についてですが、ecalj のデフォルト機能として gnuplot で描画するためのファイルが出力されています。以下のコマンドで gnuplot を実行するとバンドが描画されます。
   ```
   gnuplot -p 
+  ```
 ## QSGW 実行
 - 最後に QSGW を行います。
   ```
@@ -166,24 +167,24 @@
 ## Wannier化
 - window の設定: 以下のような部分を ctrlg.toml から探してください。その上でコメントアウトをはずします。
   ```
-  # ----- Wannier (uncomment to use) -----
-  # wan_out_emin  = -1.05   # eV relative to EFermi
-  # wan_out_emax  =  2.4
-  # wan_maxit_1st = 300
-  # wan_conv_1st  = 1e-7
-  # wan_max_1st   = 0.1
-  # wan_maxit_2nd = 1500
-  # wan_max_2nd   = 0.3
-  # wan_conv_end  = 1e-8
+  #----- Wannier (uncomment to use) -----
+  #wan_out_emin  = -1.05   # eV relative to EFermi
+  #wan_out_emax  =  2.4
+  #wan_maxit_1st = 300
+  #wan_conv_1st  = 1e-7
+  #wan_max_1st   = 0.1
+  #wan_maxit_2nd = 1500
+  #wan_max_2nd   = 0.3
+  #wan_conv_end  = 1e-8
   ```
   - 各種の値の意味は Wannier90 を同様の意味なので省略
   - ただしエネルギーの値は Fermi level を 0 となっていて、Wannier90 とは定義が異なっていることに注意
   - コメントになっている `# eV relative to EFermi` は削除しないと動かないので注意
 - 軌道の選択: 同様に以下のような部分を探してください。Worbという部分が軌道選択の箇所です。
   ```
-  # Worb: atomic orbitals for MLWF / MLO modelling.
-  # Each row: <iatom> <label> <lm1> <lm2> ...
-  # lm index: 1=s, 2=py, 3=pz, 4=px, 5=xy, 6=yz, 7=3z^2-1, 8=xz, 9=x^2-y^2, ... (real harmonics)
+  #Worb: atomic orbitals for MLWF / MLO modelling.
+  #Each row: <iatom> <label> <lm1> <lm2> ...
+  #lm index: 1=s, 2=py, 3=pz, 4=px, 5=xy, 6=yz, 7=3z^2-1, 8=xz, 9=x^2-y^2, ... (real harmonics)
   Worb = """
   ! 1 Ga   1 2 3 4 5 6 7 8 9
   ! 2 As   1 2 3 4 5 6 7 8 9

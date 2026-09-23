@@ -15,7 +15,7 @@ material=GaAs
 export MPI_GROUP_MAX=20000
 export MPI_COMM_MAX=1000
 
-export OMP_STACKSIZE=512m
+export OMP_STACKSIZE=1024m
 export OMP_NUM_THREADS=1
 
 mpirun -np 8 lmf ${material}
